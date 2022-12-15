@@ -1,0 +1,45 @@
+#include <Servo.h>
+
+Servo myservo;        // create servo object (variable) to control a servo motor
+Servo myservo1; 
+Servo myservo2; 
+Servo myservo3; 
+
+int potpin = 0;      // analog pin in the arduino board that is used to connect the potentiometer
+int potpin1 = 1;   // The analog pin used for the 4 potentiometers are from 0 to 3
+int potpin2 = 2; 
+int potpin3 = 3; 
+
+int val;         // variable to read the value from the analog pin which is connected to the potentiometer 
+int val1; 
+int val2; 
+int val3; 
+
+void setup() {
+myservo.attach(8);        // attaches a servo motor on pin 8 in the arduino board to the servo object
+myservo1.attach(9);     // The pins that are used to attach the 4 servo motors are from 8 to 11
+myservo2.attach(10);
+myservo3.attach(11);
+}
+
+void loop() {
+val = analogRead(potpin);               // reads the value of the potentiometer (value between 0 and 1023)
+val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
+myservo.write(val);                       // sets the servo position according to the scaled value
+delay(15);                                    // waits for the servo motor to get there (15 millisecond delay)
+
+val1 = analogRead(potpin1);
+val1 = map(val1, 0, 1023, 0, 180);
+myservo1.write(val1);
+delay(15);
+
+val2 = analogRead(potpin2);
+val2 = map(val2, 0, 1023, 0, 180);
+myservo2.write(val2);
+delay(15);
+
+val3 = analogRead(potpin3);
+val3 = map(val3, 0, 1023, 0, 180);
+myservo3.write(val3);
+delay(15); 
+}
